@@ -7,6 +7,8 @@ model = T5ForConditionalGeneration.from_pretrained(model_name)
 
 article_text = "Впрочем, иногда странам удаётся вести конфликты более мирным путём. Например, Канада и Дания не могут поделить маленький остров Ханс, который вы можете видеть на иллюстрации. Поэтому на острове ведётся Hans Island так называемая «интеллигентная война». Раз в несколько месяцев туда прибывают военно‑морские силы Канады, устанавливают на острове флаг своего государства, поглощают заранее оставленный противником на острове запас крепких напитков, отмечают взятие острова и с победой отбывают."
 
+article_text = st.text_area(label= "Текст:", value=article_text, )
+
 input_ids = tokenizer(
     [article_text],
     max_length=600,
@@ -23,4 +25,5 @@ output_ids = model.generate(
 
 summary = tokenizer.decode(output_ids, skip_special_tokens=True)
 
+st.write("Краткое содержание:")
 st.write(summary)
