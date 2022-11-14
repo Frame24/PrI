@@ -1,4 +1,5 @@
 from transformers import AutoTokenizer, T5ForConditionalGeneration
+import streamlit as st
 
 model_name = "IlyaGusev/rut5_base_sum_gazeta"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -21,4 +22,5 @@ output_ids = model.generate(
 )[0]
 
 summary = tokenizer.decode(output_ids, skip_special_tokens=True)
-print(summary)
+
+st.write(summary)
